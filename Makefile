@@ -1,12 +1,27 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: aminoru- <aminoru-@student.42sp.org.br>    +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/04/30 02:03:15 by aminoru-          #+#    #+#              #
-#    Updated: 2024/04/30 02:03:16 by aminoru-         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+NAME		=	ircserv
+CC			=	c++
+FLAGS		=	-Wall -Wextra -Werror -std=c++98
+INCLUDE		=	-I ./include/
+SRC			=	./src/main.cpp ./src/Autentication.cpp ./src/Channel.cpp ./src/Client.cpp ./src/Commands.cpp ./src/Server.cpp
+OBJ 		= $(SRC:.cpp=.o)
 
+all: $(NAME)
+
+.cpp.o:
+	$(CC) $(FLAGS) -c $< -o $@
+
+$(NAME): $(OBJ) 
+	$(CC) $(CFLAGS) -o $@ $(OBJ) $(INCLUDE)
+
+$(OBJ): %.o: %.cpp
+	$(CC) $(CFLAGS) -o $@ -c $< $(INCLUDE)
+	
+clean:
+	rm -rf $(OBJ)	
+	
+fclean: clean
+	rm -rf 	$(NAME)
+
+re: fclean all
+
+.PHONY: all clean fclean re

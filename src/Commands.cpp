@@ -842,7 +842,7 @@ void Server::quitCommand(std::string cmd, int fd){
 			}
 		}
 	}
-	std::cout << RED << "Client <" << fd << "> Disconnected" << WHITE << std::endl;
+	std::cout << "Client <" << fd << "> Disconnected" << std::endl;
 	removeChannel(fd);
 	removeClient(fd);
 	removeFd(fd);
