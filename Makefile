@@ -3,7 +3,7 @@ CC			=	c++
 FLAGS		=	-Wall -Wextra -Werror -std=c++98
 INCLUDE		=	-I ./include/
 SRC			=	./src/main.cpp ./src/Autentication.cpp ./src/Channel.cpp ./src/Client.cpp ./src/Commands.cpp ./src/Server.cpp
-OBJ 		= $(SRC:.cpp=.o)
+OBJ 		=  $(SRC:.cpp=.o)
 
 all: $(NAME)
 
