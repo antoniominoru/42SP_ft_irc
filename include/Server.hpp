@@ -114,7 +114,6 @@ class Server{
 		int			getColonPos(std::string &cmd);
 
 		void		inviteCommand(std::string &cmd, int &fd);
-		bool		isValidPort(std::string port);
 
 	private:
 		int							port;
