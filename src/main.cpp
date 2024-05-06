@@ -1,7 +1,5 @@
 #include "Server.hpp"
 
-static bool isValidPort(std::string port);
-
 int main(int argc, char **argv){
 	Server ser;
 	if (argc != 3){
@@ -22,9 +20,4 @@ int main(int argc, char **argv){
 		std::cerr << e.what() << std::endl;
 	}
 	std::cout << "Server closed" << std::endl;
-}
-
-static bool isValidPort(std::string port){
-	return (port.find_first_not_of("0123456789") == std::string::npos &&
-			std::atoi(port.c_str()) >= 1024 && std::atoi(port.c_str()) <= 65535);
 }
