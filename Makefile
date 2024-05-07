@@ -11,10 +11,10 @@ all: $(NAME)
 	$(CC) $(FLAGS) -c $< -o $@
 
 $(NAME): $(OBJ) 
-	$(CC) $(CFLAGS) -o $@ $(OBJ) $(INCLUDE)
+	$(CC) $(FLAGS) -o $@ $(OBJ) $(INCLUDE)
 
 $(OBJ): %.o: %.cpp
-	$(CC) $(CFLAGS) -o $@ -c $< $(INCLUDE)
+	$(CC) $(FLAGS) -o $@ -c $< $(INCLUDE)
 	
 clean:
 	rm -rf $(OBJ)	
