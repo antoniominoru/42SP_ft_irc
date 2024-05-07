@@ -329,7 +329,7 @@ void Server::kickCommand(std::string cmd, int fd) {
           std::stringstream ss;
           ss << ":" << getClientFromFd(fd)->getNickname() << "!~"
              << getClientFromFd(fd)->getUsername() << "@" << "localhost"
-             << " kickCommand #" << tmp[i] << " " << user;
+             << " KICK #" << tmp[i] << " " << user;
           if (!reason.empty())
             ss << " :" << reason << "\r\n";
           else
@@ -405,7 +405,7 @@ void Server::modeCommand(std::string &cmd, int fd) {
   arguments.clear();
   mode_chain.clear();
   Client *cli = getClientFromFd(fd);
-  size_t found = cmd.find_first_not_of("MODEmode \t\v");
+  size_t found = cmd.find_first_not_of("MODE \t\v");
   if (found != std::string::npos)
     cmd = cmd.substr(found);
   else {
@@ -708,7 +708,7 @@ void Server::partCommand(std::string cmd, int fd) {
         std::stringstream ss;
         ss << ":" << getClientFromFd(fd)->getNickname() << "!~"
            << getClientFromFd(fd)->getUsername() << "@" << "localhost"
-           << " partCommand #" << tmp[i];
+           << " PART #" << tmp[i];
         if (!reason.empty())
           ss << " :" << reason << "\r\n";
         else
@@ -833,7 +833,7 @@ void Server::privmsgCommand(std::string cmd, int fd) {
   if (!tmp.size()) {
     sendError(411, getClientFromFd(fd)->getNickname(),
               getClientFromFd(fd)->getFd(),
-              " :No recipient given (privmsgCommand)\r\n");
+              " :No recipient given (PRIVMSG)\r\n");
     return;
   }
   if (message.empty()) {
@@ -888,7 +888,7 @@ std::string SplitQuit(std::string cmd) {
   std::string reason, str;
   stm >> str;
   FindQ(cmd, str, reason);
-  if (reason.empty()) return std::string("Quit");
+  if (reason.empty()) return std::string("QUIT");
   if (reason[0] != ':') {
     for (size_t i = 0; i < reason.size(); i++) {
       if (reason[i] == ' ') {
@@ -912,7 +912,7 @@ void Server::quitCommand(std::string cmd, int fd) {
       else {
         std::string rpl = ":" + getClientFromFd(fd)->getNickname() + "!~" +
                           getClientFromFd(fd)->getUsername() +
-                          "@localhost quitCommand " + reason + "\r\n";
+                          "@localhost QUIT " + reason + "\r\n";
         channels[i].sendToAll(rpl);
       }
     } else if (channels[i].getAdmin(fd)) {
@@ -922,7 +922,7 @@ void Server::quitCommand(std::string cmd, int fd) {
       else {
         std::string rpl = ":" + getClientFromFd(fd)->getNickname() + "!~" +
                           getClientFromFd(fd)->getUsername() +
-                          "@localhost quitCommand " + reason + "\r\n";
+                          "@localhost QUIT " + reason + "\r\n";
         channels[i].sendToAll(rpl);
       }
     }

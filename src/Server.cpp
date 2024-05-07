@@ -110,7 +110,7 @@ void Server::removeChannel(int fd) {
     if (flag) {
       std::string rpl = ":" + getClientFromFd(fd)->getNickname() + "!~" +
                         getClientFromFd(fd)->getUsername() +
-                        "@localhost quitCommand Quit\r\n";
+                        "@localhost QUIT \r\n";
       channels[i].sendToAll(rpl);
     }
   }
