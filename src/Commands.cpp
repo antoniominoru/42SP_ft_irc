@@ -1,3 +1,5 @@
+#include <ostream>
+
 #include "Channel.hpp"
 #include "Client.hpp"
 #include "Replies.hpp"
@@ -850,14 +852,14 @@ void Server::privmsgCommand(std::string cmd, int fd) {
       tmp[i].erase(tmp[i].begin());
       std::string resp = ":" + getClientFromFd(fd)->getNickname() + "!~" +
                          getClientFromFd(fd)->getUsername() +
-                         "@localhost privmsgCommand #" + tmp[i] + " :" +
-                         message + "\r\n";
+                         "@localhost PRIVMSG #" + tmp[i] + " :" + message +
+                         "\r\n";
       getChannel(tmp[i])->sendToAll(resp, fd);
     } else {
       std::string resp = ":" + getClientFromFd(fd)->getNickname() + "!~" +
                          getClientFromFd(fd)->getUsername() +
-                         "@localhost privmsgCommand " + tmp[i] + " :" +
-                         message + "\r\n";
+                         "@localhost PRIVMSG " + tmp[i] + " :" + message +
+                         "\r\n";
       sendResponse(resp, getClientFromNickname(tmp[i])->getFd());
     }
   }

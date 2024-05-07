@@ -1,5 +1,7 @@
 #include "Server.hpp"
 
+#include <ostream>
+
 #include "Channel.hpp"
 #include "Client.hpp"
 #include "Replies.hpp"
