@@ -48,4 +48,4 @@ PRIVMSG #OVELHA TESTE
 
 /join #OVELHA
 
-para enviar mensagem é só escrever
+to send message just Do it
