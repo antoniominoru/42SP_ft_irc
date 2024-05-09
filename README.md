@@ -23,21 +23,29 @@ My full explanation of the project is in this Medium article. I hope you will li
 ### Principal codes
 
 --------- SERVIDOR ---------------
+
 ./ircserv 2002 123
 
 --------- CLIENTE NC ---------------
+
 nc localhost 2002
 
 PASS 123
+
 NICK TESTE
+
 USER TESTE * * :TESTE 123
+
 JOIN #OVELHA
+
 PRIVMSG #OVELHA TESTE
 
 --------- CLIENTE IRSSI ---------------
 
 /set nick lula
+
 /connect localhost 2002 123
+
 /join #OVELHA
 
 para enviar mensagem é só escrever
